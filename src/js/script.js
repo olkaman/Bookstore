@@ -38,10 +38,39 @@
       }
     });
 
-    
+    bookFilters.addEventListener('click', function(e){
+
+      if(e.target.name == 'filter' && e.target.checked == true){
+        filters.push(e.target.value);
+      }else if(e.target.name == 'filter' && e.target.checked == false){
+        const toRemoveValue = filters.indexOf(e.target.value);
+        filters.splice(toRemoveValue, 1);
+      }
+      filterBooks();
+    });
   }
   
   initActions();
 
-  f
+  function filterBooks(){
+		
+    let shouldBeHidden = false;
+
+    for(let book of booksDataSource){
+      for(let filter of filters){
+        if(!book.details[filter]){
+          shouldBeHidden = true;
+          break;
+        } else{
+          shouldBeHidden = false;
+        }
+      }
+      const singleBook = document.querySelector('.book__image[data-id="' + book.id + '"]');		
+      if(shouldBeHidden){
+        singleBook.classList.add('hidden');
+      }else{
+        singleBook.classList.remove('hidden');
+      }
+    }
+  }
 }
