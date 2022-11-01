@@ -9,7 +9,7 @@ dataSource.books = [
     image: 'images/books/1.jpg',
     details: {
       adults: true,
-      nonFiction: false
+      nonFiction: true
     }
   },
   {
@@ -20,7 +20,7 @@ dataSource.books = [
     image: 'images/books/2.jpg',
     details: {
       adults: false,
-      nonFiction: true
+      nonFiction: false
     }
   },
   {
@@ -30,7 +30,7 @@ dataSource.books = [
     price: 20,
     rating: 7.8,
     details: {
-      adults: false,
+      adults: true,
       nonFiction: true
     }
   },
