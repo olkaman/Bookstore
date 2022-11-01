@@ -5,7 +5,11 @@
     constructor(){
       const thisBookList = this;
 
+      thisBookList.favoriteBooks = [];
+      thisBookList.filters = [];
+
       thisBookList.getElements();
+      thisBookList.getData();
       thisBookList.getBooksList();
       thisBookList.initActions();
     }
@@ -16,6 +20,11 @@
       thisBookList.bookListWrapper = document.querySelector('.books-list');
       thisBookList.templateOfBook = document.querySelector('#template-book');
       thisBookList.bookFilters = document.querySelector('.filters');
+    }
+
+    getData(){
+      const thisBookList = this;
+
       thisBookList.booksDataSource = dataSource.books;
     }
 
@@ -40,19 +49,16 @@
     initActions(){
       const thisBookList = this;
 
-      const favoriteBooks = [];
-      thisBookList.filters = [];
-
       thisBookList.bookListWrapper.addEventListener('dblclick', function(e){
         e.preventDefault();
         const id = e.target.offsetParent.getAttribute('data-id');
-        if(!favoriteBooks.includes(id)){
+        if(!thisBookList.favoriteBooks.includes(id)){
           e.target.offsetParent.classList.add('favorite');
-          favoriteBooks.push(id);
+          thisBookList.favoriteBooks.push(id);
         } else {
           e.target.offsetParent.classList.remove('favorite');
-          const removeID = favoriteBooks.indexOf(id);
-          favoriteBooks.splice(removeID, 1);
+          const removeID = thisBookList.favoriteBooks.indexOf(id);
+          thisBookList.favoriteBooks.splice(removeID, 1);
         }
       });
 
